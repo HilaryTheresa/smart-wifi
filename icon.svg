@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="wifiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景圆 -->
+  <circle cx="128" cy="128" r="120" fill="url(#wifiGradient)" stroke="#fff" stroke-width="8"/>
+  
+  <!-- WiFi信号图标 -->
+  <g fill="#fff" transform="translate(128, 128)">
+    <!-- 最外层信号弧 -->
+    <path d="M -60 20 A 80 80 0 0 1 60 20" stroke="#fff" stroke-width="12" fill="none" opacity="0.8"/>
+    
+    <!-- 中层信号弧 -->
+    <path d="M -40 20 A 55 55 0 0 1 40 20" stroke="#fff" stroke-width="10" fill="none" opacity="0.9"/>
+    
+    <!-- 内层信号弧 -->
+    <path d="M -20 20 A 30 30 0 0 1 20 20" stroke="#fff" stroke-width="8" fill="none"/>
+    
+    <!-- 中心点 -->
+    <circle cx="0" cy="25" r="8" fill="#fff"/>
+  </g>
+</svg>
+

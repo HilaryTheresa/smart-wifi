@@ -1,0 +1,66 @@
+{
+  "name": "smart-wifi-manager",
+  "version": "1.0.0",
+  "description": "Windows WiFi管理桌面应用",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:portable": "electron-builder --win portable"
+  },
+  "keywords": [
+    "wifi",
+    "manager",
+    "electron",
+    "windows"
+  ],
+  "author": "Smart WiFi Manager",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^38.1.2",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "node-wifi": "^2.0.15"
+  },
+  "build": {
+    "appId": "com.smartwifi.manager",
+    "productName": "WIFI管理",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer.js",
+      "preload.js",
+      "wifi-manager.js",
+      "index.html",
+      "style.css",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "${productName}_${version}_Portable.exe"
+    }
+  }
+}
+

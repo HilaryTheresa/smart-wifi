@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WIFI管理</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 拖拽区域 -->
+        <div class="drag-region"></div>
+
+        <h3 class="app-title">WIFI管理</h3>
+        
+        <!-- 统一的顶部按钮栏 -->
+        <div class="top-buttons">
+            <button id="refreshBtn" class="top-btn refresh" title="刷新">↻</button>
+            <button id="minimizeBtn" class="top-btn minimize" title="最小化">−</button>
+            <button id="closeBtn" class="top-btn close" title="关闭">✕</button>
+        </div>
+
+        <!-- 收藏栏 -->
+        <section class="favorites-section">
+            <h3 class="section-title">⭐ 收藏网络</h3>
+            <div class="favorites-container" id="favoritesContainer">
+                <div class="empty-message">暂无收藏</div>
+            </div>
+        </section>
+
+        <!-- 已保存网络 -->
+        <section class="saved-networks-section">
+            <h3 class="section-title">📂 已保存网络</h3>
+            <div class="networks-list" id="networksList">
+                <div class="loading">正在加载...</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 简化连接弹窗 -->
+    <div class="modal" id="connectModal">
+        <div class="modal-content">
+            <h3>连接到 <span id="connectSSID"></span></h3>
+            <input type="password" id="passwordInput" placeholder="请输入WiFi密码" autofocus>
+            <div class="modal-actions">
+                <button id="cancelConnect">取消</button>
+                <button id="confirmConnect">连接</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast消息 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,438 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+    color: #333;
+    overflow: hidden;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+}
+
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.app-title {
+    position: fixed;
+    top: 8px;
+    left: 24px;
+    color: #333;
+    font-size: 16px;
+    z-index: 1001;
+}
+
+/* 统一的顶部按钮栏 */
+.top-buttons {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 4px;
+    z-index: 1001;
+}
+
+.top-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #6c757d;
+}
+
+.top-btn:hover {
+    border-color: #ced4da;
+    background: #f8f9fa;
+    transform: translateY(-1px);
+}
+
+.top-btn.refresh:hover {
+    background: #e3f2fd;
+    color: #1976d2;
+    border-color: #bbdefb;
+}
+
+.top-btn.minimize:hover {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-color: #c8e6c9;
+}
+
+.top-btn.close:hover {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #ffcdd2;
+}
+
+/* 拖拽区域 */
+.drag-region {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 100px;
+    height: 44px;
+    -webkit-app-region: drag;
+    z-index: 999;
+}
+
+/* 区域样式 */
+.favorites-section,
+.saved-networks-section {
+    padding: 20px;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.favorites-section {
+    padding-top: 52px; /* 为顶部按钮留出空间 */
+    flex-shrink: 0; /* 防止收缩 */
+}
+
+.saved-networks-section {
+    flex: 1; /* 占据剩余空间 */
+    border-bottom: none; /* 移除底部边框 */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0; /* 移除底部内边距 */
+}
+
+.section-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 12px;
+}
+
+/* 收藏网络容器 */
+.favorites-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 40px;
+    align-items: center;
+}
+
+.favorite-item {
+    background: #f8f9fa;
+    color: #495057;
+    padding: 6px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.favorite-item:hover {
+    background: #e9ecef;
+    border-color: #ced4da;
+    transform: translateY(-1px);
+}
+
+.favorite-item.current {
+    background: #e8f5e8;
+    color: #2e7d32;
+    border-color: #81c784;
+    position: relative;
+}
+
+.favorite-item.current::before {
+    content: "●";
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    color: #2e7d32;
+    font-size: 8px;
+    background: #fff;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #81c784;
+}
+
+.favorite-item .remove-btn {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+.favorite-item:hover .remove-btn {
+    display: block;
+}
+
+/* 网络列表 */
+.networks-list {
+    flex: 1; /* 占据父容器剩余空间 */
+    overflow-y: auto;
+    min-height: 0; /* 允许收缩 */
+}
+
+.network-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f4;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.network-item:hover {
+    background: #f8f9fa;
+}
+
+.network-item.current {
+    background: #e8f5e8;
+    border-left: 4px solid #28a745;
+    padding-left: 16px;
+}
+
+.network-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.network-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+
+.network-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    background: transparent;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-small:hover {
+    background: #f8f9fa;
+}
+
+.btn-small.favorite {
+    color: #ffc107;
+    border-color: #ffc107;
+}
+
+.btn-small.favorite:hover {
+    background: #ffc107;
+    color: white;
+}
+
+.btn-small.danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-small.danger:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* 空状态 */
+.empty-message {
+    text-align: center;
+    color: #6c757d;
+    font-style: italic;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+}
+
+/* 连接弹窗 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    width: 320px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.modal-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#cancelConnect {
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+#cancelConnect:hover {
+    background: #e9ecef;
+}
+
+#confirmConnect {
+    background: #007bff;
+    color: white;
+}
+
+#confirmConnect:hover {
+    background: #0056b3;
+}
+
+/* Toast消息 */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}
+
+.toast {
+    background: #333;
+    color: white;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease-out;
+    font-size: 14px;
+    min-width: 200px;
+}
+
+.toast.success {
+    background: #28a745;
+}
+
+.toast.error {
+    background: #dc3545;
+}
+
+.toast.info {
+    background: #17a2b8;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* 滚动条样式 */
+.networks-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.networks-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.networks-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.networks-list::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
