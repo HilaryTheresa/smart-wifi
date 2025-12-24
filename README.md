@@ -1,4 +1,4 @@
-# Smart WiFi Manager
+# Smart WiFi Manager（智能wifi管理）
 
 一个基于Electron开发的Windows WiFi管理桌面应用程序，提供便捷的WiFi连接和管理功能。
 
